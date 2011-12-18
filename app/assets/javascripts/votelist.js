@@ -28,11 +28,9 @@ VoteList.CandidateController = Em.ArrayController.create({
     if (content) {
       var result = Em.copy(content);
       
-      result = result.sort( function( a, b ) {
+      return result.sort( function( a, b ) {
         return b.get('score') - a.get('score');
       });
-      
-      return result;
     } else {
       return [];
     }
