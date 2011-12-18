@@ -20,10 +20,10 @@
 <body>
   <h1>APs</h1>
   <script type="text/x-handlebars">
-    {{view MAPList.CreateAPView id="new-ap" placeholder="What is their name?"}}
+    {{view VoteList.CreateCandidateView id="new-candidate" placeholder="What is their name?"}}
     
-    {{#collection contentBinding="MAPList.APController" tagname="ul" id="MAPList"}}
-      {{#view MAPList.APView personBinding="content"}}
+    {{#collection contentBinding="VoteList.CandidateController.sortedContent" tagname="ul" id="CandidateList"}}
+      {{#view VoteList.CandidateView personBinding="content"}}
         {{person.name}}: {{person.score}}
         {{view SC.Button class="upvote" target="parentView" action="upvote"}}
         {{view SC.Button class="downvote" target="parentView" action="downvote"}}
