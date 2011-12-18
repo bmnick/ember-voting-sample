@@ -1,7 +1,9 @@
-VoteList = Em.Application.create()
+# Ember.js Application
+VoteList = Ember.Application.create()
 
 
-VoteList.Candidate = Em.Object.extend
+# Model object indicating one potential vote recipient
+VoteList.Candidate = Ember.Object.extend
   name: 'somebody'
   score: 0
   
@@ -12,9 +14,10 @@ VoteList.Candidate = Em.Object.extend
   # Decrement the score by one
   downvote: ->
     this.set 'score', this.get('score') - 1
-  
-  
-VoteList.CandidateController = Em.ArrayController.create
+ 
+
+# Controller for candidate models
+VoteList.CandidateController = Ember.ArrayController.create
   content: []
 
   # Computed property to keep content sorted
@@ -22,7 +25,7 @@ VoteList.CandidateController = Em.ArrayController.create
     content = this.get('content')
     
     if content
-      result = Em.copy content
+      result = Ember.copy content
       
       result.sort ( a, b ) ->
         b.get('score') - a.get('score')
@@ -36,7 +39,8 @@ VoteList.CandidateController = Em.ArrayController.create
     this.pushObject(cand)
 
 
-VoteList.CreateCandidateView = Em.TextField.extend
+# View for creating a new candidate
+VoteList.CreateCandidateView = Ember.TextField.extend
   # Automate having new items inserted into the 
   # list of candidates when enter is pressed
   insertNewline: ->
@@ -47,7 +51,8 @@ VoteList.CreateCandidateView = Em.TextField.extend
       this.set 'value', ''
 
 
-VoteList.CandidateView = Em.View.extend
+# View for displaying an individual candidate
+VoteList.CandidateView = Ember.View.extend
   person: null
   
   # View helper to pass calls down to the model
