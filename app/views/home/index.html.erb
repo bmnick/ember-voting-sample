@@ -1,0 +1,12 @@
+<h1>Candidates</h1>
+  <script type="text/x-handlebars">
+    {{view VoteList.CreateCandidateView id="new-candidate" placeholder="What is their name?"}}
+    
+    {{#collection contentBinding="VoteList.CandidateController.sortedContent" tagname="ul" id="CandidateList"}}
+      {{#view VoteList.CandidateView personBinding="content"}}
+        {{person.name}}: {{person.score}}
+        {{view SC.Button class="upvote" target="parentView" action="upvote"}}
+        {{view SC.Button class="downvote" target="parentView" action="downvote"}}
+      {{/view}}
+    {{/collection}}
+  </script>
