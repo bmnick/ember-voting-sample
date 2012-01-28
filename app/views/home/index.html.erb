@@ -1,16 +1,20 @@
 <div class="page-header">
   <h1>Personal Voting</h1>
 </div>
+
 <script type="text/x-handlebars">
   <div class="clearfix">
     <div class="input">
       {{view VoteList.CreateCandidateView id="new-candidate-name" placeholder="Who's the new candidate?" class="span12" name="new-candidate-name" }}
     </div>
   </div>
+</script>
   
-  <div class="page-header">
-    <h2>Current Candidates</h2>
-  </div>
+<div class="page-header">
+  <h2>Current Candidates</h2>
+</div>
+
+<script type="text/x-handlebars">
   {{#collection contentBinding="VoteList.CandidateController.sortedContent" tagname="ul" id="CandidateList"}}
     {{#view VoteList.CandidateView personBinding="content" class="well person"}}
       {{person.displayName}}: {{person.score}}
