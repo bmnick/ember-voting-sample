@@ -6,5 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require ember-0.9
+//= require ember-0.9.4.min
+//= require ember-rest
 //= require votelist
