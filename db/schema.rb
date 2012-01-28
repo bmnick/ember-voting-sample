@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120124184908) do
+ActiveRecord::Schema.define(:version => 20120128215314) do
 
   create_table "candidates", :force => true do |t|
-    t.string   "name"
+    t.string   "displayName"
     t.integer  "score"
     t.datetime "created_at"
     t.datetime "updated_at"
