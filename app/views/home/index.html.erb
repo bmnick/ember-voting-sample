@@ -1,12 +1,30 @@
-<h1>Candidates</h1>
-  <script type="text/x-handlebars">
-    {{view VoteList.CreateCandidateView id="new-candidate" placeholder="What is their name?"}}
-    
-    {{#collection contentBinding="VoteList.CandidateController.sortedContent" tagname="ul" id="CandidateList"}}
-      {{#view VoteList.CandidateView personBinding="content"}}
-        {{person.displayName}}: {{person.score}}
-        {{#view SC.Button class="upvote" target="parentView" action="upvote"}}YAY!{{/view}}
-        {{#view SC.Button class="downvote" target="parentView" action="downvote"}}NOPE!{{/view}}
-      {{/view}}
-    {{/collection}}
-  </script>
+<div class="page-header">
+  <h1>Personal Voting</h1>
+</div>
+<script type="text/x-handlebars">
+  <form>
+    <fieldset>
+      <legend>New Candidate</legend>
+      <div class="clearfix">
+        <label for="new-candidate-name">Name</label>
+        <div class="input">
+          {{view VoteList.CreateCandidateView id="new-candidate-name" placeholder="What is their name?" class="xlarge" name="new-candidate-name" }}
+        </div>
+      </div><!-- / -->
+
+    </fieldset>
+  </form>
+  
+  <div class="page-header">
+    <h2>Current Candidates</h2>
+  </div>
+  {{#collection contentBinding="VoteList.CandidateController.sortedContent" tagname="ul" id="CandidateList"}}
+    {{#view VoteList.CandidateView personBinding="content" class="well person"}}
+      {{person.displayName}}: {{person.score}}
+      <span id="controlButtons">
+        {{#view SC.Button class="btn primary" target="parentView" action="upvote"}}YAY!{{/view}}
+        {{#view SC.Button class="btn danger" target="parentView" action="downvote"}}NOPE!{{/view}}
+      </span>
+    {{/view}}
+  {{/collection}}
+</script>
