@@ -5,8 +5,8 @@
     {{#collection contentBinding="VoteList.CandidateController.sortedContent" tagname="ul" id="CandidateList"}}
       {{#view VoteList.CandidateView personBinding="content"}}
         {{person.displayName}}: {{person.score}}
-        {{view SC.Button class="upvote" target="parentView" action="upvote"}}
-        {{view SC.Button class="downvote" target="parentView" action="downvote"}}
+        {{#view SC.Button class="upvote" target="parentView" action="upvote"}}YAY!{{/view}}
+        {{#view SC.Button class="downvote" target="parentView" action="downvote"}}NOPE!{{/view}}
       {{/view}}
     {{/collection}}
   </script>
