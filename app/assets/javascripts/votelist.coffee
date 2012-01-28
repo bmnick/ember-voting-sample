@@ -42,7 +42,6 @@ VoteList.CandidateController = Ember.ResourceController.create
   
   # Creation method for adding a new canddiate
   createCandidate: (displayName, shouldSave = true, score = 0, id) ->
-    console.log displayName
     cand = VoteList.Candidate.create displayName: displayName, score: score, id: id
 
     this.pushObject(cand)

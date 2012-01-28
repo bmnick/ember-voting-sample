@@ -2,18 +2,11 @@
   <h1>Personal Voting</h1>
 </div>
 <script type="text/x-handlebars">
-  <form>
-    <fieldset>
-      <legend>New Candidate</legend>
-      <div class="clearfix">
-        <label for="new-candidate-name">Name</label>
-        <div class="input">
-          {{view VoteList.CreateCandidateView id="new-candidate-name" placeholder="What is their name?" class="xlarge" name="new-candidate-name" }}
-        </div>
-      </div><!-- / -->
-
-    </fieldset>
-  </form>
+  <div class="clearfix">
+    <div class="input">
+      {{view VoteList.CreateCandidateView id="new-candidate-name" placeholder="Who's the new candidate?" class="span12" name="new-candidate-name" }}
+    </div>
+  </div>
   
   <div class="page-header">
     <h2>Current Candidates</h2>
