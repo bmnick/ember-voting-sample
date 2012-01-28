@@ -3,38 +3,29 @@ VoteList = Ember.Application.create()
 
 
 # Model object indicating one potential vote recipient
-VoteList.Candidate = Ember.Object.extend
-  name: 'somebody'
+VoteList.Candidate = Ember.Resource.extend
+  url: 'candidate'
+  name: 'candidate'
+  properties: ['displayName', 'score']
+
+  displayName: 'somebody'
   score: 0
-  id: -1
   
   # Increment the score by one
   upvote: ->
     this.set 'score', this.get('score') + 1
-    this.update()
+    this.save()
   
   # Decrement the score by one
   downvote: ->
     this.set 'score', this.get('score') - 1
-    this.update()
-
-  # Add this model to the server
-  create: ->
-    $.ajax 'candidate',
-      data: {candidate: {name: this.get('name'), score: this.get('score')}}
-      success: (data) -> console.log(data)
-  
-  # Save changes from the model to the server
-  update: ->
-    $.ajax 'candidate/' + this.id,
-      type: 'PUT'
-      data: {candidate: {name: this.get('name'), score: this.get('score')}}
-      success: (data) -> console.log(data)
+    this.save()
 
 
 # Controller for candidate models
-VoteList.CandidateController = Ember.ArrayController.create
-  content: []
+VoteList.CandidateController = Ember.ResourceController.create
+  type: VoteList.Candidate
+  url: 'candidate'
 
   # Computed property to keep content sorted
   sortedContent:(() ->
@@ -50,11 +41,14 @@ VoteList.CandidateController = Ember.ArrayController.create
   ).property('@each.score').cacheable()
   
   # Creation method for adding a new canddiate
-  createCandidate: (name, shouldSave = true, score = 0, id) ->
-    cand = VoteList.Candidate.create name: name, score: score, id: id
+  createCandidate: (displayName, shouldSave = true, score = 0, id) ->
+    console.log displayName
+    cand = VoteList.Candidate.create displayName: displayName, score: score, id: id
+
     this.pushObject(cand)
+
     if (shouldSave)
-      cand.create()
+      cand.save()
 
 
 # View for creating a new candidate
@@ -85,22 +79,14 @@ VoteList.CandidateView = Ember.View.extend
 
 # Basic setup on first page load
 jQuery ->
-  console.log('ready')
-
   # Setup common AJAX settings for most requests
   $.ajaxSetup
     type: 'POST'
     headers: 
       'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
     accept: 'application/json'
-  
-  # Load the candidates to use initially
-  $.ajax
-    type: 'GET'
-    url: 'candidate'
-    success: (data) ->
-      jQuery.each data, (i, elem) ->
-        VoteList.CandidateController.createCandidate(elem.name, false, elem.score, elem.id)
+
+  VoteList.CandidateController.findAll()
 
 
 # Send VoteList out to the rest of the system
