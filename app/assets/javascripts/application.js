@@ -6,6 +6,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree lib
+//= require_tree ./lib
 //
-//= require votelist
+//= require ./app/app
+//= require_tree ./app/models
+//= require_tree ./app/helpers
+//= require_tree ./app/controllers
+//= require_tree ./app/views

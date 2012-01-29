@@ -15,12 +15,12 @@
 </div>
 
 <script type="text/x-handlebars">
-  {{#collection contentBinding="VoteList.CandidateController.sortedContent" tagname="ul" id="CandidateList"}}
+  {{#collection contentBinding="VoteList.CandidateController.sortedContent" tagname="ul"}}
     {{#view VoteList.CandidateView personBinding="content" class="well person"}}
       {{person.displayName}}: {{person.score}}
       <span id="controlButtons">
-        {{#view SC.Button class="btn primary" target="parentView" action="upvote"}}YAY!{{/view}}
-        {{#view SC.Button class="btn danger" target="parentView" action="downvote"}}NOPE!{{/view}}
+        {{#view Em.Button class="btn primary" target="parentView" action="upvote"}}YAY!{{/view}}
+        {{#view Em.Button class="btn danger" target="parentView" action="downvote"}}NOPE!{{/view}}
       </span>
     {{/view}}
   {{/collection}}
